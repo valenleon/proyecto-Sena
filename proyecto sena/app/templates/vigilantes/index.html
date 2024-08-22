@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Vigilantes</title>
+</head>
+<body>
+    <h1>Lista de Vigilantes</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Acciones</th>
+        </tr>
+        {% for vigilante in data %}
+            <tr>
+                <td>{{ vigilante.idVigilante }}</td>
+                <td>{{ vigilante.nombre }}</td>
+                <td>{{ vigilante.telefono}}</td>
+                <td>
+                    <a href="{{ url_for('vigilante.edit', idVigilante=vigilante.idVigilante) }}">Editar</a>
+                    <a href="{{ url_for('vigilante.delete', idVigilante=vigilante.idVigilante) }}">Eliminar</a>                 
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('vigilante.add') }}"><button>Agregar Vigilante</button></a>
+    <a href="{{ url_for('home.home')}} "><button>Volver al home</button></a>
+</body>
+</html>

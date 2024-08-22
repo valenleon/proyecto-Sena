@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{url_for('static',filename='style.css')}}" rel="stylesheet">
+    <title>Agregar Computador</title>
+</head>
+<body>
+    <h1>Agregar Computador</h1>
+    <form action="{{ url_for('computador.add') }}" method="post">
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" name="marca" required>
+        <select name="perisferico" id="perisferico">
+            {% for perisferico in perisfericos %}
+                <option value="{{ perisferico.idPerisferico }}" >{{ perisferico.descripcion }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Agregar Computador</button>
+    </form>
+</body>

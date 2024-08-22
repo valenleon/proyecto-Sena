@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Editar Vigilante</title>
+</head>
+<body>
+    <h1>Editar Vigilante</h1>
+    <form action="{{ url_for('vigilante.edit', idVigilante=vigilante.idVigilante) }}" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" value="{{ vigilante.nombre }}" required>
+        <label for="telefono">Telefono:</label>
+        <input type="text" name="telefono" id="telefono" value="{{ vigilante.telefono }}" required>
+
+        <button type="submit">Actualizar Vigilante</button>
+    </form>
+</body>
+</html>

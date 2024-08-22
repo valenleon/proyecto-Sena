@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Editar Registro</title>
+</head>
+<body>
+    <h1>Editar Registro</h1>
+    <form action="{{ url_for('registro.edit', idRegistro=registro.idRegistro) }}" method="post">
+        <select name="usuarios_id" id="usuarios_id">
+            {% for user in usuario %}
+                <option value="{{ user.idUsuario }}" {% if user.idUsuario == registro.user %} selected {% endif %}>{{ user.nombre }}</option>
+            {% endfor %}
+        </select>
+        <select name="vigilantes_id" id="vigilantes_id">
+            {% for vigilante in vigilan %}
+                <option value="{{ vigilante.idVigilante }}" {% if vigilante.idVigilante == registro.vigilante %} selected {% endif %}>{{ vigilante.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" name="fecha" id="fecha" value="{{ registro.fecha }}" required>
+        <label for="hora">Hora:</label>
+        <input type="time" name="hora" id="hora" value="{{ registro.hora }}" required>
+
+        <button type="submit">Actualizar Registro</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='style.css') }}">
+        <title>Perisfericos</title>
+    </head>
+    <body>
+        <h1>Lista de Perisfericos</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Descripcion</th>
+                <th>Acciones</th>
+            </tr>
+            {% for perisferico in data %}
+            <tr>
+                <td>{{ perisferico.idPerisferico}}</td>
+                <td>{{ perisferico.descripcion }}</td>
+                <td>
+                    <a
+                        href="{{ url_for('perisferico.edit', idPerisferico=perisferico.idPerisferico) }}"><button>Editar</button></a>
+                    <a
+                        href="{{ url_for('perisferico.delete', idPerisferico=perisferico.idPerisferico) }}"><button>Eliminar</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ url_for('perisferico.add') }}"><button>Agregar
+                Perisfericos</button></a>
+        <a href="{{ url_for('home.home') }}"><button>Volver al home</button></a>
+    </body>
+</html>

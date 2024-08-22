@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Editar usuario</title>
+</head>
+<body>
+    <h1>Editar usuario</h1>
+    <form action="{{ url_for('usuario.edit', idUsuario=usuario.idUsuario) }}" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" value="{{ usuario.nombre }}" required>
+        <select name="tipousuario" id="tipousuario">
+            {% for tipo in tipos %}
+                <option value="{{ tipo.idTipoUsuario }}" {% if tipo.idTipoUsuario == usuario.tipousuario %} selected {% endif %}>{{ tipo.descripcion }}</option>
+            {% endfor %}
+        </select>
+        <select name="computador" id="computador">
+            {% for computador in computadores %}
+                <option value="{{ computador.idComputador }}" {% if computador.idComputador == usuario.computador %} selected {% endif %}>{{ computador.marca }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Actualizar usuario</button>
+    </form>
+</body>
+</html>

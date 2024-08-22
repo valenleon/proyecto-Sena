@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Computadores</title>
+</head>
+<body>
+    <h1>Lista de Computadores</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Marca</th>
+            <th>Perisfericos</th>
+            <th>Acciones</th>
+        </tr>
+        {% for computador in data %}
+            <tr>
+                <td>{{ computador.idComputador}}</td>
+                <td>{{ computador.marca }}</td>
+                <td>{{ computador.perisfericos.descripcion }}</td>
+                <td>
+                    <a href="{{ url_for('computador.edit', idComputador=computador.idComputador) }}">Editar</a>
+                    <a href="{{ url_for('computador.delete', idComputador=computador.idComputador) }}">Eliminar</a>                 
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('computador.add') }}"><button>Agregar Computador</button></a>
+    <a href="{{ url_for('home.home')}}"><button>Volver al home</button></a>
+</body>
+</html>

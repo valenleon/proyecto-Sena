@@ -1,0 +1,16 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{url_for('static',filename='style.css')}}" rel="stylesheet">
+    <title>Agregar Perisfericos</title>
+</head>
+<body>
+    <h1>Agregar Perisfericos</h1>
+    <form action="{{ url_for('perisferico.add') }}" method="post">
+        <label for="descripcion">Descripcion:</label>
+        <input type="text" id="descripcion" name="descripcion" required>
+ 
+        <button type="submit">Agregar Perisfericos</button>
+    </form>
+</body>

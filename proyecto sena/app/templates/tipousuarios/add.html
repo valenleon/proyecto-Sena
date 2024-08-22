@@ -1,0 +1,16 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{url_for('static',filename='style.css')}}" rel="stylesheet">
+    <title>Agregar tipo de usuario</title>
+</head>
+<body>
+    <h1>Agregar tipo de usuario</h1>
+    <form action="{{ url_for('tipousuario.add') }}" method="post">
+        <label for="descripcion">Descripcion:</label>
+        <input type="text" id="descripcion" name="descripcion" required>
+ 
+        <button type="submit">Agregar tipo de usuario</button>
+    </form>
+</body>

@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{url_for('static',filename='style.css')}}" rel="stylesheet">
+    <title>Agregar Registro</title>
+</head>
+<body>
+    <h1>Agregar Registro</h1>
+    <form action="{{ url_for('registro.add') }}" method="post">
+        <select name="usuarios_id" id="usuarios_id">
+            {% for user in usuarios %}
+                <option value="{{ user.idUsuario }}" >{{ user.nombre }}</option>
+            {% endfor %}
+        </select>
+        <select name="vigilantes_id" id="vigilantes_id">
+            {% for vigilante in vigilant %}
+                <option value="{{ vigilante.idVigilante }}" >{{ vigilante.nombre }}</option>
+            {% endfor %}
+        </select>
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required>
+        <label for="hora">Hora:</label>
+        <input type="time" id="hora" name="hora" required>
+
+        <button type="submit">Agregar Registro</button>
+    </form>
+</body>

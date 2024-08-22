@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Tipos de Usuario</title>
+</head>
+<body>
+    <h1>Lista de Tipo de Usuarios</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Descripcion</th>
+            <th>Acciones</th>
+        </tr>
+        {% for tipousuario in data %}
+            <tr>
+                <td>{{ tipousuario.idTipoUsuario}}</td>
+                <td>{{ tipousuario.descripcion }}</td>
+                <td>
+                    <a href="{{ url_for('tipousuario.edit', idTipoUsuario=tipousuario.idTipoUsuario) }}"><button>Editar</button></a>
+                    <a href="{{ url_for('tipousuario.delete', idTipoUsuario=tipousuario.idTipoUsuario) }}"><button>Eliminar</button></a>                 
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('tipousuario.add') }}"><button>Agregar Tipo de Usuario</button></a>
+    <a href="{{ url_for('home.home') }}"><button>Volver al home</button></a>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Editar tipo de usuario</title>
+</head>
+<body>
+    <h1>Editar tipo de usuario</h1>
+    <form action="{{ url_for('tipousuario.edit', idTipoUsuario=tipousuario.idTipoUsuario) }}" method="post">
+        <label for="descripcion">Descripcion:</label>
+        <input type="text" name="descripcion" id="descripcion" value="{{ tipousuario.descripcion }}" required>
+
+        <button type="submit">Actualizar tipo de usuario</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Editar Computador</title>
+</head>
+<body>
+    <h1>Editar Computador</h1>
+    <form action="{{ url_for('computador.edit', idComputador=computador.idComputador) }}" method="post">
+        <label for="marca">Marca:</label>
+        <input type="text" name="marca" id="marca" value="{{ computador.marca }}" required>
+        <select name="perisferico" id="perisferico">
+            {% for perisferico in perisfericos %}
+                <option value="{{ perisferico.idPerisferico }}" {% if perisferico.idPerisferico == computador.perisferico %} selected {% endif %}>{{ perisferico.descripcion }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Actualizar Computador</button>
+    </form>
+</body>
+</html>
