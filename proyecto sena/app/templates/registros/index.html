@@ -1,41 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Registro</title>
-</head>
-<body>
-    <h1>Lista de Registros</h1>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Computador</th>
-            <th>Usuario</th>
-            <th>Perisferico</th>
-            <th>Vigilante</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Acciones</th>
-        </tr>
-        {% for registro in data %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='style.css') }}">
+        <title>Registro</title>
+    </head>
+    <body>
+        <h1>Lista de Registros</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Computador</th>
+                <th>Usuario</th>
+                <th>Perisferico</th>
+                <th>Vigilante</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Acciones</th>
+            </tr>
+            {% for registro in data %}
             <tr>
                 <td>{{ registro.idRegistro}}</td>
-                <td>{{ registro.computadores.marca }}</td>
-                <td>{{ registro.computadores.user.nombre }}</td>
-                <td>{{ registro.computadores.perisfericos.descripcion }}</td>
-                <td>{{ registro.vigilantes.nombre}}</td>
-                <td>{{ registro.fecha }}</td>
-                <td>{{ registro.hora }}</td>
                 <td>
-                    <a href="{{ url_for('registro.edit', idRegistro=registro.idRegistro) }}">Editar</a>
-                    <a href="{{ url_for('registro.delete', idRegistro=registro.idRegistro) }}">Eliminar</a>                 
+                    {% for usuario in usuarios %}
+                        {% if usuario.idUsuario == registro.usuario_id %}
+                            {% for computador in computadores %}
+                                {% if usuario.computador_id == computador.idComputador %}
+                                    {{ computador.marca }}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
                 </td>
-            </tr>
-        {% endfor %}
-    </table>
-    <a href="{{ url_for('registro.add') }}"><button>Agregar registro</button></a>
-    <a href="{{ url_for('home.home')}}"><button>Volver al home</button></a>
-</body>
-</html>
+                <td>
+                    {% for usuario in usuarios %}
+                    {% if usuario.idUsuario == registro.usuario_id %}
+                    {{ usuario.nombre }}
+                    {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for usuario in usuarios %}
+                        {% if usuario.idUsuario == registro.usuario_id %}
+                            {% for computador in computadores %}
+                                {% if usuario.computador_id == computador.idComputador %}
+                                    {% for perisferico in perisfericos %}
+                                        {% if computador.perisferico_id == perisferico.idPerisferico %}
+                                            {{ perisferico.descripcion }}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                    <td>{{ registro.vigilantes.nombre }}</td>
+                    <td>{{ registro.fecha }}</td>
+                    <td>{{ registro.hora }}</td>
+                    <td>
+                        <a
+                            href="{{ url_for('registro.edit', idRegistro=registro.idRegistro) }}">Editar</a>
+                        <a
+                            href="{{ url_for('registro.delete', idRegistro=registro.idRegistro) }}">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <a href="{{ url_for('registro.add') }}"><button>Agregar
+                    registro</button></a>
+            <a href="{{ url_for('home.home')}}"><button>Volver al
+                    home</button></a>
+        </body>
+    </html>

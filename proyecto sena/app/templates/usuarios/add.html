@@ -10,12 +10,12 @@
     <form action="{{ url_for('usuario.add') }}" method="post">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required>
-        <select name="tipousuario" id="tipousuario">
+        <select name="tipousuario_id" id="tipousuario_id">
             {% for tipo in tipos %}
                 <option value="{{ tipo.idTipoUsuario }}" >{{ tipo.descripcion }}</option>
             {% endfor %}
         </select>
-        <select name="computador" id="computador">
+        <select name="computador_id" id="computador_id">
             {% for computador in computadores %}
                 <option value="{{ computador.idComputador }}" >{{ computador.marca }}</option>
             {% endfor %}

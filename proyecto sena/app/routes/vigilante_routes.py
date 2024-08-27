@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template, redirect, request, url_for
 from app.models.vigilante import Vigilante
+from flask_login import login_required
 from app import db
 
 bp = Blueprint('vigilante', __name__)
 
 @bp.route('/Vigilante')
+@login_required
 def index():
     data = Vigilante.query.all()
     return render_template('vigilantes/index.html', data=data)

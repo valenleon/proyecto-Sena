@@ -4,26 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+        }
+        .sidebar img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .sidebar .menu-item {
+            margin-bottom: 15px;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .sidebar a:hover {
+            background-color: #555;
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+    </style>
 </head>
 <body>
-    <div class="colum1">
-        <a href="{{ url_for('computador.index') }}"><button>ir a computadores</button></a>
-    </div>
-    <div class="colum1">
-        <a href="{{ url_for('tipousuario.index') }}"><button>ir a Tipos de Usuarios</button></a>
-    </div>
-    <div class="colum1">
-        <a href="{{ url_for('usuario.index') }}"><button>ir a Usuarios</button></a>
-    </div>
-    <div class="colum1">
-        <a href="{{ url_for('perisferico.index') }}"><button>ir a perisfericos</button></a>
-    </div>
-    <div class="colum1">
-        <a href="{{ url_for('registro.index') }}"><button>ir a Registros</button></a>
-    </div>
-    <div class="colum1">
-        <a href="{{ url_for('vigilante.index') }}"><button>ir a Vigilantes</button></a>
+    <div class="sidebar">
+        <img src="logo.png" alt="Logo"> <!-- Aquí puedes colocar tu logo -->
+        <div class="menu-item">
+            <a href="{{ url_for('computador.index') }}">Ir a Computadores</a>
+        </div>
+        <div class="menu-item">
+            <a href="{{ url_for('tipousuario.index') }}">Ir a Tipos de Usuarios</a>
+        </div>
+        <div class="menu-item">
+            <a href="{{ url_for('usuario.index') }}">Ir a Usuarios</a>
+        </div>
+        <div class="menu-item">
+            <a href="{{ url_for('perisferico.index') }}">Ir a Periféricos</a>
+        </div>
+        <div class="menu-item">
+            <a href="{{ url_for('registro.index') }}">Ir a Registros</a>
+        </div>
+        <div class="menu-item">
+            <a href="{{ url_for('vigilante.index') }}">Ir a Vigilantes</a>
+        </div>
     </div>
 
+    <div class="content">
+        <!-- Aquí va el contenido de la página -->
+        <h1>Bienvenido a la Página Principal</h1>
+        <p>Selecciona una opción del menú para continuar.</p>
+    </div>
 </body>
 </html>

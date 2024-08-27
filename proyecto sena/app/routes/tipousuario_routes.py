@@ -1,11 +1,13 @@
 from flask import Blueprint, render_template, redirect, request, url_for
 from app.models.tipousuario import TipoUsuario
+from flask_login import login_required
 from app import db
 
 bp = Blueprint('tipousuario', __name__)
 tipo_usuario = TipoUsuario()
 
 @bp.route('/Tipousuario')
+@login_required
 def index():
     data = TipoUsuario.query.all()
     return render_template('tipousuarios/index.html', data=data)

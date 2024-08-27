@@ -16,18 +16,16 @@ def index():
 def add():
     if request.method == 'POST':
         marca = request.form['marca']
-        usuario = request.form['usuario']
-        perisferico = request.form['perisferico']
+        perisferico_id = request.form['perisferico_id']
 
-        new_computador = Computador(marca=marca, usuario=usuario, perisferico=perisferico)
+        new_computador = Computador(marca=marca, perisferico_id=perisferico_id)
         db.session.add(new_computador)
         db.session.commit()
 
         return redirect(url_for('computador.index'))
     
-    usuario = Usuario.query.all()
     perisferico = Perisferico.query.all()
-    return render_template('computadores/add.html', user=usuario, perisfericos=perisferico)
+    return render_template('computadores/add.html', perisfericos=perisferico)
 
 @bp.route('/Computador/edit/<int:idComputador>', methods=['GET', 'POST'])
 def edit(idComputador):
@@ -35,15 +33,13 @@ def edit(idComputador):
 
     if request.method == 'POST':
         computador.marca = request.form['marca']
-        computador.usuario = request.form['usuario']
-        computador.perisferico = request.form['perisferico']
+        computador.perisferico_id = request.form['perisferico_id']
 
         db.session.commit()
         return redirect(url_for('computador.index'))
     
-    usuario = Usuario.query.all()
     perisferico = Perisferico.query.all()
-    return render_template('computadores/edit.html', computador=computador, user=usuario, perisfericos=perisferico)
+    return render_template('computadores/edit.html', computador=computador, perisfericos=perisferico)
 
 @bp.route('/Computador/delete/<int:idComputador>')
 def delete(idComputador):

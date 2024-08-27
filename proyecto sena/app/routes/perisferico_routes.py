@@ -1,17 +1,20 @@
 from flask import Blueprint, redirect, render_template, request, url_for
 from app.models.perisferico import Perisferico
 from app.models.computador import Computador
+from flask_login import login_required
 from app import db
 
 bp = Blueprint('perisferico', __name__)
 
 @bp.route('/Perisferico')
+@login_required
 def index():
     data = Perisferico.query.all()
     datac = Computador.query.all()
     return render_template('perisfericos/index.html', data=data, datac=datac)
 
 @bp.route('/Perisferico/add', methods=['GET', 'POST'])
+@login_required
 def add():
     if request.method == 'POST':
         descripcion = request.form['descripcion']
@@ -25,6 +28,7 @@ def add():
     return render_template('perisfericos/add.html')
 
 @bp.route('/Perisferico/edit/<int:idPerisferico>', methods=['GET', 'POST'])
+@login_required
 def edit(idPerisferico):
     perisferico = Perisferico.query.get_or_404(idPerisferico)
 
@@ -37,6 +41,7 @@ def edit(idPerisferico):
     return render_template('perisfericos/edit.html', perisferico=perisferico)
 
 @bp.route('/Perisferico/delete/<int:idPerisferico>')
+@login_required
 def delete(idPerisferico):
     perisferico = Perisferico.query.get_or_404(idPerisferico)
 

@@ -10,7 +10,7 @@
     <form action="{{ url_for('computador.add') }}" method="post">
         <label for="marca">Marca:</label>
         <input type="text" id="marca" name="marca" required>
-        <select name="perisferico" id="perisferico">
+        <select name="perisferico_id" id="perisferico_id">
             {% for perisferico in perisfericos %}
                 <option value="{{ perisferico.idPerisferico }}" >{{ perisferico.descripcion }}</option>
             {% endfor %}
