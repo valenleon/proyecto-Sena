@@ -3,16 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
     <title>Editar tipo de usuario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7e4; 
+            color: #2d2d2d;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center; 
+        }
+
+        h1 {
+            color: #0b5e3b; 
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+    
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid #d1e7dd; 
+            margin: 0 auto; 
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: #0b5e3b; 
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #d1e7dd; 
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: #f9f9f9; 
+        }
+
+        button {
+            background-color: #34a853; 
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0b5e3b; 
+        }
+    </style>
 </head>
 <body>
-    <h1>Editar tipo de usuario</h1>
-    <form action="{{ url_for('tipousuario.edit', idTipoUsuario=tipousuario.idTipoUsuario) }}" method="post">
-        <label for="descripcion">Descripcion:</label>
-        <input type="text" name="descripcion" id="descripcion" value="{{ tipousuario.descripcion }}" required>
-
-        <button type="submit">Actualizar tipo de usuario</button>
-    </form>
+    <div>
+        <h1>Editar tipo de usuario</h1>
+        <form action="{{ url_for('tipousuario.edit', idTipoUsuario=tipousuario.idTipoUsuario) }}" method="post">
+            <label for="descripcion">Descripción:</label>
+            <input type="text" name="descripcion" id="descripcion" value="{{ tipousuario.descripcion }}" required>
+            <button type="submit">Actualizar tipo de usuario</button>
+        </form>
+    </div>
 </body>
 </html>
